@@ -76,10 +76,19 @@ function Menu() {
 }
 
 function Footer() {
+	//! Writing Logic in a Component
+	// const time = new Date().getTime();
+	// const openHour = 8;
+	// const closeHour = 20;
+	// if (time <= openHour || time >= closeHour) alert("We're Closed!");
+	// else alert("We're Open!");
+
 	return (
 		<div>
 			<p> some random bullshit 2</p>
 			<button>Order Now</button>
+			{/* add some JavaScript code in a JSX */}
+			<div>{new Date().toLocaleTimeString()}</div>
 		</div>
 	);
 }
