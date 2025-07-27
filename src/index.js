@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './index.css';
 
 const pizzaData = [
 	{
@@ -48,7 +49,7 @@ const pizzaData = [
 
 function App() {
 	return (
-		<div>
+		<div className="container">
 			<Header />
 			<Menu />
 			<Footer />
@@ -57,21 +58,33 @@ function App() {
 }
 
 function Header() {
-	return <h1>Fast React Pizza Co.</h1>;
+	// const style = {
+	// 	color: 'red',
+	// 	fontSize: '48px',
+	// 	textTransform: 'uppercase',
+	// };
+	const style = {};
+	return (
+		<header className="header">
+			<h1 style={style}>Fast React Pizza Co.</h1>
+		</header>
+	);
 }
 
 function Menu() {
 	return (
-		<div>
-			<h2> Our Menu</h2>
+		<main className="menu">
+			<h2> Our Menu </h2>
 			<p>some random bullshit about menu</p>
-			<Pizza />
-			<Pizza />
-			<Pizza />
-			<Pizza />
-			<Pizza />
-			<Pizza />
-		</div>
+			<div className="pizzas">
+				<Pizza />
+				<Pizza />
+				<Pizza />
+				<Pizza />
+				<Pizza />
+				<Pizza />
+			</div>
+		</main>
 	);
 }
 
@@ -84,20 +97,20 @@ function Footer() {
 	// else alert("We're Open!");
 
 	return (
-		<div>
+		<footer className="footer">
 			<p> some random bullshit 2</p>
-			<button>Order Now</button>
+			<button className="btn">Order Now</button>
 			{/* add some JavaScript code in a JSX */}
-			<div>{new Date().toLocaleTimeString()}</div>
-		</div>
+			{/* <div>{new Date().toLocaleTimeString()}</div> */}
+		</footer>
 	);
 }
 
 function Pizza() {
 	return (
-		<div>
+		<div className="pizza">
 			<img src="pizzas/focaccia.jpg" alt="focaccia"></img>
-			<h2>{pizzaData[0].name}</h2>
+			<h3>{pizzaData[0].name}</h3>
 			<p>{pizzaData[0].ingredients}</p>
 		</div>
 	);
