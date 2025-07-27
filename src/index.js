@@ -77,14 +77,59 @@ function Menu() {
 			<h2> Our Menu </h2>
 			<p>some random bullshit about menu</p>
 			<div className="pizzas">
-				<Pizza />
-				<Pizza />
-				<Pizza />
-				<Pizza />
-				<Pizza />
-				<Pizza />
+				<Pizza
+					name={pizzaData[0].name}
+					ingredients={pizzaData[0].ingredients}
+					price={pizzaData[0].price}
+					photoName={pizzaData[0].photoName}
+				/>
+				<Pizza
+					name={pizzaData[1].name}
+					ingredients={pizzaData[1].ingredients}
+					price={pizzaData[1].price}
+					photoName={pizzaData[1].photoName}
+				/>
+				<Pizza
+					name={pizzaData[2].name}
+					ingredients={pizzaData[2].ingredients}
+					price={pizzaData[2].price}
+					photoName={pizzaData[2].photoName}
+				/>
+				<Pizza
+					name={pizzaData[3].name}
+					ingredients={pizzaData[3].ingredients}
+					price={pizzaData[3].price}
+					photoName={pizzaData[3].photoName}
+				/>
+				<Pizza
+					name={pizzaData[4].name}
+					ingredients={pizzaData[4].ingredients}
+					price={pizzaData[4].price}
+					photoName={pizzaData[4].photoName}
+				/>
+				<Pizza
+					name={pizzaData[5].name}
+					ingredients={pizzaData[5].ingredients}
+					price={pizzaData[5].price}
+					photoName={pizzaData[5].photoName}
+				/>
 			</div>
 		</main>
+	);
+}
+function Pizza(props) {
+	// console.log(props);
+	// console.log(typeof props);
+	//! props : an object contain the properties that a child component has.
+	return (
+		<div className="pizza">
+			<img src={props.photoName} alt={props.name}></img>
+			<div>
+				<h3>{props.name}</h3>
+				<p>{props.ingredients}</p>
+				<span>{props.price}</span>
+			</div>
+		</div>
 	);
 }
 
@@ -103,16 +148,6 @@ function Footer() {
 			{/* add some JavaScript code in a JSX */}
 			{/* <div>{new Date().toLocaleTimeString()}</div> */}
 		</footer>
-	);
-}
-
-function Pizza() {
-	return (
-		<div className="pizza">
-			<img src="pizzas/focaccia.jpg" alt="focaccia"></img>
-			<h3>{pizzaData[0].name}</h3>
-			<p>{pizzaData[0].ingredients}</p>
-		</div>
 	);
 }
 
