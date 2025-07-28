@@ -103,21 +103,25 @@ function Menu() {
 		</main>
 	);
 }
-function Pizza(props) {
+
+//! Always Destructure props and don't use props like that
+// function Pizza(props) {
+
+function Pizza({ pizzaObj }) {
 	// console.log(props);
 	// console.log(typeof props);
 	//! props : an object contain the properties that a child component has.
 
 	//! Conditional Rendering with multiple returns
-	// if (props.pizzaObj.soldOut) return null;
+	// if (pizzaObj.soldOut) return null;
 
 	return (
 		<li className="pizza">
-			<img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}></img>
+			<img src={pizzaObj.photoName} alt={pizzaObj.name}></img>
 			<div>
-				<h3>{props.pizzaObj.name}</h3>
-				<p>{props.pizzaObj.ingredients}</p>
-				<span>${props.pizzaObj.price}</span>
+				<h3>{pizzaObj.name}</h3>
+				<p>{pizzaObj.ingredients}</p>
+				<span>${pizzaObj.price}</span>
 			</div>
 		</li>
 	);
@@ -147,7 +151,7 @@ function Footer() {
 			{/*! Conditional Rendering : Ternery Operator (Suggested)*/}
 			{isOpen ? (
 				//! Replace the long code with a new component
-				<Order closeHour={closeHour} />
+				<Order openHour={openHour} closeHour={closeHour} />
 			) : (
 				<p>
 					We're happy to wellcome you between {openHour}:00 and{' '}
@@ -162,12 +166,12 @@ function Footer() {
 }
 
 //! Replace the long code with a new component
-function Order(props) {
+function Order({ openHour, closeHour }) {
 	return (
 		<div className="order">
 			<p>
-				We're open until {props.closeHour}:00. Come visit us or order
-				online.
+				We're open {openHour}:00 to {closeHour}:00. Come visit us or
+				order online.
 			</p>
 			<button className="btn">Order Now</button>
 		</div>
