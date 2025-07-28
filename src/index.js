@@ -79,44 +79,13 @@ function Menu() {
 				Authentic Italian cuisine. 6 creative dishes to choose from. All
 				from our stone oven, all origanic, all delicious.
 			</p>
-			<div className="pizzas">
-				<Pizza
-					name={pizzaData[0].name}
-					ingredients={pizzaData[0].ingredients}
-					price={pizzaData[0].price}
-					photoName={pizzaData[0].photoName}
-				/>
-				<Pizza
-					name={pizzaData[1].name}
-					ingredients={pizzaData[1].ingredients}
-					price={pizzaData[1].price}
-					photoName={pizzaData[1].photoName}
-				/>
-				<Pizza
-					name={pizzaData[2].name}
-					ingredients={pizzaData[2].ingredients}
-					price={pizzaData[2].price}
-					photoName={pizzaData[2].photoName}
-				/>
-				<Pizza
-					name={pizzaData[3].name}
-					ingredients={pizzaData[3].ingredients}
-					price={pizzaData[3].price}
-					photoName={pizzaData[3].photoName}
-				/>
-				<Pizza
-					name={pizzaData[4].name}
-					ingredients={pizzaData[4].ingredients}
-					price={pizzaData[4].price}
-					photoName={pizzaData[4].photoName}
-				/>
-				<Pizza
-					name={pizzaData[5].name}
-					ingredients={pizzaData[5].ingredients}
-					price={pizzaData[5].price}
-					photoName={pizzaData[5].photoName}
-				/>
-			</div>
+
+			{/* Rendering component List instead of component one by one*/}
+			<ul className="pizzas">
+				{pizzaData.map(pizza => (
+					<Pizza pizzaObj={pizza} key={pizza.name} />
+				))}
+			</ul>
 		</main>
 	);
 }
@@ -125,14 +94,14 @@ function Pizza(props) {
 	// console.log(typeof props);
 	//! props : an object contain the properties that a child component has.
 	return (
-		<div className="pizza">
-			<img src={props.photoName} alt={props.name}></img>
+		<li className="pizza">
+			<img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}></img>
 			<div>
-				<h3>{props.name}</h3>
-				<p>{props.ingredients}</p>
-				<span>{props.price}</span>
+				<h3>{props.pizzaObj.name}</h3>
+				<p>{props.pizzaObj.ingredients}</p>
+				<span>${props.pizzaObj.price}</span>
 			</div>
-		</div>
+		</li>
 	);
 }
 
