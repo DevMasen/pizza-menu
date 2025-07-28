@@ -72,20 +72,32 @@ function Header() {
 }
 
 function Menu() {
+	const pizzas = pizzaData;
+	const pizzaCount = pizzas.length;
+	// const pizzaCount = 0;
 	return (
 		<main className="menu">
 			<h2> Our Menu </h2>
-			<p>
-				Authentic Italian cuisine. 6 creative dishes to choose from. All
-				from our stone oven, all origanic, all delicious.
-			</p>
+			{pizzaCount > 0 ? (
+				<p>
+					Authentic Italian cuisine. {pizzaCount} creative dishes to
+					choose from. All from our stone oven, all origanic, all
+					delicious.
+				</p>
+			) : null}
 
 			{/* Rendering component List instead of component one by one*/}
-			<ul className="pizzas">
-				{pizzaData.map(pizza => (
-					<Pizza pizzaObj={pizza} key={pizza.name} />
-				))}
-			</ul>
+			{pizzaCount > 0 ? (
+				<ul className="pizzas">
+					{pizzas.map(pizza => (
+						<Pizza pizzaObj={pizza} key={pizza.name} />
+					))}
+				</ul>
+			) : (
+				<p>
+					We're still working on our menu, please come back later :)
+				</p>
+			)}
 		</main>
 	);
 }
@@ -106,21 +118,43 @@ function Pizza(props) {
 }
 
 function Footer() {
-	//! Writing Logic in a Component
-	// const time = new Date().getTime();
-	// const openHour = 8;
-	// const closeHour = 20;
-	// if (time <= openHour || time >= closeHour) alert("We're Closed!");
-	// else alert("We're Open!");
+	// Writing Logic in a Component
+	const time = new Date().getHours();
+	const openHour = 8;
+	const closeHour = 22;
+	const isOpen = time >= openHour && time <= closeHour;
+	console.log(isOpen);
 
 	return (
 		<footer className="footer">
-			<div className="order">
-				<p> We're open until 22:00. Come visit us or order online.</p>
-				<button className="btn">Order Now</button>
-			</div>
+			{/*Conditional Rendering: Renderin a component towards a condition checked by and operator */}
+			{/* {isOpen && (
+				<div className="order">
+					<p>
+						{' '}
+						We're open until 22:00. Come visit us or order online.
+					</p>
+					<button className="btn">Order Now</button>
+				</div>
+			)} */}
 
-			{/* add some JavaScript code in a JSX */}
+			{/* Conditional Rendering : Ternery Operator (Suggested)*/}
+			{isOpen ? (
+				<div className="order">
+					<p>
+						We're open until {closeHour}:00. Come visit us or order
+						online.
+					</p>
+					<button className="btn">Order Now</button>
+				</div>
+			) : (
+				<p>
+					We're happy to wellcome you between {openHour}:00 and{' '}
+					{closeHour}:00 :)
+				</p>
+			)}
+
+			{/*JavaScript code in a JSX */}
 			{/* <div>{new Date().toLocaleTimeString()}</div> */}
 		</footer>
 	);
