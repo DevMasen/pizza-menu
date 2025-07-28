@@ -29,7 +29,7 @@ const pizzaData = [
 		ingredients: 'Tomato, mozarella, mushrooms, and onion',
 		price: 12,
 		photoName: 'pizzas/funghi.jpg',
-		soldOut: false,
+		soldOut: true,
 	},
 	{
 		name: 'Pizza Salamino',
@@ -77,24 +77,26 @@ function Menu() {
 	const pizzas = pizzaData;
 	const pizzaCount = pizzas.length;
 	// const pizzaCount = 0;
+
 	return (
 		<main className="menu">
 			<h2> Our Menu </h2>
-			{pizzaCount > 0 ? (
-				<p>
-					Authentic Italian cuisine. {pizzaCount} creative dishes to
-					choose from. All from our stone oven, all origanic, all
-					delicious.
-				</p>
-			) : null}
 
 			{/*! Rendering component List instead of component one by one*/}
 			{pizzaCount > 0 ? (
-				<ul className="pizzas">
-					{pizzas.map(pizza => (
-						<Pizza pizzaObj={pizza} key={pizza.name} />
-					))}
-				</ul>
+				//! or React.Fragment for passing key object
+				<>
+					<p>
+						Authentic Italian cuisine. {pizzaCount} creative dishes
+						to choose from. All from our stone oven, all origanic,
+						all delicious.
+					</p>
+					<ul className="pizzas">
+						{pizzas.map(pizza => (
+							<Pizza pizzaObj={pizza} key={pizza.name} />
+						))}
+					</ul>
+				</>
 			) : (
 				<p>
 					We're still working on our menu, please come back later :)
@@ -116,12 +118,17 @@ function Pizza({ pizzaObj }) {
 	// if (pizzaObj.soldOut) return null;
 
 	return (
-		<li className="pizza">
+		//! Conditionally setting classes for an element
+		<li className={`pizza ${pizzaObj.soldOut ? 'sold-out' : ''}`}>
 			<img src={pizzaObj.photoName} alt={pizzaObj.name}></img>
 			<div>
 				<h3>{pizzaObj.name}</h3>
 				<p>{pizzaObj.ingredients}</p>
-				<span>${pizzaObj.price}</span>
+
+				{/* Conditionally changing Text */}
+				<span>
+					{pizzaObj.soldOut ? 'SOLD OUT' : '$' + pizzaObj.price}
+				</span>
 			</div>
 		</li>
 	);
