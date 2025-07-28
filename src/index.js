@@ -75,7 +75,10 @@ function Menu() {
 	return (
 		<main className="menu">
 			<h2> Our Menu </h2>
-			<p>some random bullshit about menu</p>
+			<p>
+				Authentic Italian cuisine. 6 creative dishes to choose from. All
+				from our stone oven, all origanic, all delicious.
+			</p>
 			<div className="pizzas">
 				<Pizza
 					name={pizzaData[0].name}
@@ -143,8 +146,11 @@ function Footer() {
 
 	return (
 		<footer className="footer">
-			<p> some random bullshit 2</p>
-			<button className="btn">Order Now</button>
+			<div className="order">
+				<p> We're open until 22:00. Come visit us or order online.</p>
+				<button className="btn">Order Now</button>
+			</div>
+
 			{/* add some JavaScript code in a JSX */}
 			{/* <div>{new Date().toLocaleTimeString()}</div> */}
 		</footer>
