@@ -58,12 +58,14 @@ function App() {
 }
 
 function Header() {
+	//! Constomized styles stored in a object literal
 	// const style = {
 	// 	color: 'red',
 	// 	fontSize: '48px',
 	// 	textTransform: 'uppercase',
 	// };
 	const style = {};
+
 	return (
 		<header className="header">
 			<h1 style={style}>Fast React Pizza Co.</h1>
@@ -86,7 +88,7 @@ function Menu() {
 				</p>
 			) : null}
 
-			{/* Rendering component List instead of component one by one*/}
+			{/*! Rendering component List instead of component one by one*/}
 			{pizzaCount > 0 ? (
 				<ul className="pizzas">
 					{pizzas.map(pizza => (
@@ -105,6 +107,10 @@ function Pizza(props) {
 	// console.log(props);
 	// console.log(typeof props);
 	//! props : an object contain the properties that a child component has.
+
+	//! Conditional Rendering with multiple returns
+	// if (props.pizzaObj.soldOut) return null;
+
 	return (
 		<li className="pizza">
 			<img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}></img>
@@ -118,16 +124,16 @@ function Pizza(props) {
 }
 
 function Footer() {
-	// Writing Logic in a Component
+	//! Writing Logic in a Component
 	const time = new Date().getHours();
 	const openHour = 8;
 	const closeHour = 22;
 	const isOpen = time >= openHour && time <= closeHour;
-	console.log(isOpen);
+	// console.log(isOpen);
 
 	return (
 		<footer className="footer">
-			{/*Conditional Rendering: Renderin a component towards a condition checked by and operator */}
+			{/*! Conditional Rendering: Renderin a component towards a condition checked by and operator */}
 			{/* {isOpen && (
 				<div className="order">
 					<p>
@@ -138,15 +144,10 @@ function Footer() {
 				</div>
 			)} */}
 
-			{/* Conditional Rendering : Ternery Operator (Suggested)*/}
+			{/*! Conditional Rendering : Ternery Operator (Suggested)*/}
 			{isOpen ? (
-				<div className="order">
-					<p>
-						We're open until {closeHour}:00. Come visit us or order
-						online.
-					</p>
-					<button className="btn">Order Now</button>
-				</div>
+				//! Replace the long code with a new component
+				<Order closeHour={closeHour} />
 			) : (
 				<p>
 					We're happy to wellcome you between {openHour}:00 and{' '}
@@ -154,9 +155,22 @@ function Footer() {
 				</p>
 			)}
 
-			{/*JavaScript code in a JSX */}
+			{/*! JavaScript code in a JSX */}
 			{/* <div>{new Date().toLocaleTimeString()}</div> */}
 		</footer>
+	);
+}
+
+//! Replace the long code with a new component
+function Order(props) {
+	return (
+		<div className="order">
+			<p>
+				We're open until {props.closeHour}:00. Come visit us or order
+				online.
+			</p>
+			<button className="btn">Order Now</button>
+		</div>
 	);
 }
 
@@ -167,5 +181,5 @@ root.render(
 	</React.StrictMode>
 );
 
-// React 17 and earlier:
-// ReactDOM.render(<App />, document.getElementById('root'));
+//! React 17 and earlier:
+//! ReactDOM.render(<App />, document.getElementById('root'));
